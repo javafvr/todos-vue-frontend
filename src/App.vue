@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div>
+		<appHeader>
+			<div class="h1" slot='title'>Todos app</div>
+			<div class="h5" slot='subtitle'>created with vue.js and express.js</div>
+		</appHeader>
+		<!-- <component :is='componentName'></component> -->
+		<taskAdd></taskAdd>
+		<tasksList></tasksList>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+	import appHeader from './header.vue'
+	import taskAdd from './taskAdd.vue'
+	import tasksList  from './tasksList.vue'
+	export	default {
+		data(){
+			return{
+				alert:'success'
+			}
+		},
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+		computed: {
+			componentName(){
+				return this.mode == 'success' ? 'succsessMessage' : 'errorMessage';
+			}
+		},
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+		components:{
+			appHeader,
+			taskAdd,
+			tasksList
+		}
+	}
+</script>;
