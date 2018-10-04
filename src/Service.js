@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { bus } from './bus.js'
 
 export default new Vue({
 	data: {
@@ -10,10 +11,10 @@ export default new Vue({
 		nextTaskNumber: 3
 
 	},
+
 	methods: {
 
 		taskDone(id){
-			console.log('task done');
 			this.tasks[id].isDone = this.tasks[id].isDone ? false : true;
 		},
 
@@ -26,7 +27,22 @@ export default new Vue({
 		},
 
 		taskEdit(id){
-			console.log('task edit');
+			bus.$emit('taskEdit', id, this.tasks[id].title);
+			return this.tasks[id].title;
+		},
+
+		taskUpdate(id, title){
+			bus.$emit('taskEditEnd', id);
+			this.tasks[id].title = title;
+		},
+
+		checkTask(title){
+
+			for (var i = 0; i < this.tasks.length; i++) {
+				if (this.tasks[i].title === title) return true;
+			}
+
+			return false;
 		}
 	}
 });
