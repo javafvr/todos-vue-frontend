@@ -1,6 +1,6 @@
 <template>
 	<div id='task'>
-		<div class="mb-3 card bg-light">
+		<div class="shadow mb-3 card bg-light">
 			<div class="card-header">Tasks list</div>
 				<ul class="list-group list-group-flush" id="listOfTasks">
 					<task
